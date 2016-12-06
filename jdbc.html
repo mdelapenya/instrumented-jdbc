@@ -69,7 +69,7 @@ compile group: 'com.ijdbc', name: 'oracle', version: '1.0-SNAPSHOT'
 									<pre><code>JDBCInstrumentation jdbcInstrumentation = new JDBCInstrumentation(
 	"actionName", "clientInfo", "moduleName");</code></pre>
 
-									<h4 class="major">Instrument the connection</h4>
+									<h4 class="major">Instrumenting the connection</h4>
 									<p>And last, once you get the connection we instrument it like this:</p>
 									<pre><code>OracleInstrumentationUtil.instrument(connection, jdbcInstrumentation);</code></pre>
 
