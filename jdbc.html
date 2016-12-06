@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>PL/SQL - iJDBC by HowToOracle_ES</title>
+		<title>JDBC - iJDBC by HowToOracle_ES</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -48,7 +48,7 @@
 					<section id="wrapper">
 						<header>
 							<div class="inner">
-								<h2>PL/SQL</h2>
+								<h2>JDBC</h2>
 								<p>Phasellus non pulvinar erat. Fusce tincidunt nisl eget ipsum.</p>
 							</div>
 						</header>
@@ -56,28 +56,53 @@
 						<!-- Content -->
 							<div class="wrapper">
 								<div class="inner">
-									<h3 class="major">Instrumenting PL/SQL</h3>
-									<p>This is how a PL/SQL application must instrument the connection whenever is necessary.</p>
-									<pre><code>BEGIN
-dbms_session.set_identifier(client_id=>'moises.espinosa.es');
-dbms_application_info.set_client_info(client_info=>'Linux x86_64');
-dbms_application_info.set_module(module_name=>'script.sql',
-action_name=>'test session intstumentation');
-END;
-/</code></pre>
+									<h3 class="major">Using iJDBC</h3>
+									<p>First, you must add to application classpath the modules with the utility.</p>
 
-									<h3 class="major">Reading the instrumentation</h3>
-									<p>If we want to retrieve instrumentation data, we can use following sentences:</p>
-									<pre><code>SELECT sys_context('userenv','client_identifier') AS client_identifier,
- sys_context('userenv','client_info') AS client_info,
- sys_context('userenv','module') AS module_name,
- sys_context('userenv','action') AS action_name
- FROM dual;</code></pre>
-									<pre><code>SELECT client_identifier, client_info, module AS module_name, action AS action_name
- FROM v$session
- WHERE sid = sys_context('userenv','sid');
- FROM dual;</code></pre>
+									<h4 class="major">Dependencies management</h4>
+									<p>This is an example in <code>Gradle</code></p>
+									<pre><code>compile group: 'com.ijdbc', name: 'common', version: '1.0-SNAPSHOT'
+compile group: 'com.ijdbc', name: 'oracle', version: '1.0-SNAPSHOT'
+</code></pre>
+									<p>The <code>oracle</code> module requires classes from the <code>common</code> module, which is in a separated module to abstract from the underlying database.</p>
 
+									<h4 class="major">Defining the instrumentation properties</h4>
+									<p>Then, we need to define a POJO with the information we want to provide to the tool:</p>
+									<pre><code>JDBCInstrumentation jdbcInstrumentation = new JDBCInstrumentation(
+	"actionName", "clientInfo", "moduleName");</code></pre>
+
+									<h4 class="major">Instrument the connection</h4>
+									<p>And last, once you get the connection we instrument it like this:</p>
+									<pre><code>OracleInstrumentationUtil.instrument(connection, jdbcInstrumentation);</code></pre>
+
+									<h4 class="major">Obtaining a JDBC connection</h4>
+									<p>Depending on your application, you get an Oracle connection creating it each time:</p>
+									<pre><code>Connection connection = DriverManager.getConnection(
+	"jdbc:oracle:thin:@localhost:1521:db","username","password");</code></pre>									
+									<p>Or using a connection pool:</p>
+									<pre><code>Context ctx = new InitialContext(ht);
+OracleDataSource ods = new OracleDataSource();
+
+// Set DataSource properties
+ods.setUser("Scott");
+ods.setConnectionCachingEnabled(true);    // Turns on caching
+ctx.bind("MyDS", ods);
+// ...
+// Retrieve DataSource from the InitialContext
+ods =(OracleDataSource) ctx. lookup("MyDS");
+
+// Transparently create cache and retrieve connection
+Connection connection = ods.getConnection();</code></pre>
+
+									<h3 class="major">Wanna do it by yourself?</h3>
+									<p>No problem. This is how a Java application using JDBC should instrument the connection whenever is necessary.</p>
+									<pre><code>String[] metrics = new String[OracleConnection.END_TO_END_STATE_INDEX_MAX];
+
+metrics[OracleConnection.END_TO_END_CLIENTID_INDEX] = “moises.espinosa.es”;
+metrics[OracleConnection.END_TO_END_MODULE_INDEX] = “SessionAttributes.java”;
+metrics[OracleConnection.END_TO_END_ACTION_INDEX] = “test session instrumentation”;
+
+((OracleConnection)connection).setEndToEndMetrics(metrics, (short)0);</code></pre>
 								</div>
 							</div>
 
