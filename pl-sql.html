@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>PL/SQL - iJDBC by HowToOracle_ES</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.html">Instrumented JDBC</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="generic.html">Generic</a></li>
+								<li><a href="pl-sql.html">PL/SQL</a></li>
+								<li><a href="elements.html">Elements</a></li>
+								<li><a href="#">Log In</a></li>
+								<li><a href="#">Sign Up</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>PL/SQL</h2>
+								<p>Phasellus non pulvinar erat. Fusce tincidunt nisl eget ipsum.</p>
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+									<h3 class="major">Instrumenting PL/SQL</h3>
+									<p>This is how a PL/SQL application must instrument the connection whenever is necessary.</p>
+									<pre><code>BEGIN
+dbms_session.set_identifier(client_id=>'moises.espinosa.es');
+dbms_application_info.set_client_info(client_info=>'Linux x86_64');
+dbms_application_info.set_module(module_name=>'script.sql',
+action_name=>'test session intstumentation');
+END;
+/</code></pre>
+
+									<h3 class="major">Reading the instrumentation</h3>
+									<p>If we want to retrieve instrumentation data, we can use following sentences:</p>
+									<pre><code>SELECT sys_context('userenv','client_identifier') AS client_identifier,
+ sys_context('userenv','client_info') AS client_info,
+ sys_context('userenv','module') AS module_name,
+ sys_context('userenv','action') AS action_name
+ FROM dual;</code></pre>
+									<pre><code>SELECT client_identifier, client_info, module AS module_name, action AS action_name
+ FROM v$session
+ WHERE sid = sys_context('userenv','sid');
+ FROM dual;</code></pre>
+
+								</div>
+							</div>
+
+					</section>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="inner">
+							<h2 class="major">Get in touch</h2>
+							<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
+							<ul class="contact">
+								<li class="fa-home">
+									Untitled Inc<br />
+									1234 Somewhere Road Suite #2894<br />
+									Nashville, TN 00000-0000
+								</li>
+								<li class="fa-twitter"><a href="https://twitter.com/howtooracle_es">@howtooracle_es</a></li>
+								<li class="fa-facebook"><a href="https://www.facebook.com/howtooracle.es">howtooracle.es</a></li>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; HowToOracle_ES. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
