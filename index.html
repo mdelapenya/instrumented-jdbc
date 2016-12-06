@@ -63,7 +63,7 @@
 									<div class="content">
 										<h2 class="major">Instrument application code</h2>
 										<p>A very important thing DBA's miss when monitoring an application is database calls, because we can trace application usage in an easy and quick manner. Without this instrumentation, it's not straight forward to know which module or action is actually being executed with an specific session, and check what it's doing. This behavior is common when database connections are created using a Connection Pool, because the database will be ignoring which end-user is actually using a session.</p>
-										<a href="#" class="special">Learn more</a>
+										<a href="#two" class="special">What do a DBA see?</a>
 									</div>
 								</div>
 							</section>
@@ -75,7 +75,7 @@
 									<div class="content">
 										<h2 class="major">What DBA's are used to seeing</h2>
 										<p>From database perspective, we have following attributes to monitor an application: <strong>Client Identifier</strong>, <strong>Client Information</strong>, <strong>Module Name</strong> and <strong>Action Name</strong>. Those values can be read from the <code>v$session</code> view. There are other views, such as <code>v$view</code> which contain module and action attributes. We must be careful with <code>v$sql</code> view, because there could be shared sentences with module and action belonging to a different user, not the one who executed it afterwards.</p>
-										<a href="#" class="special">Learn more</a>
+										<a href="#three" class="special">Are you a developer? Please help DBA!</a>
 									</div>
 								</div>
 							</section>
@@ -87,7 +87,7 @@
 									<div class="content">
 										<h2 class="major">What developers can do for DBA's</h2>
 										<p>A developer can instrumentation her oracle connections using the <code>setEndToEndMetrics</code> method on <code>OracleConnection</code> interface.</p>
-										<a href="#" class="special">Learn more</a>
+										<a href="jdbc.html" class="special">Learn how</a>
 									</div>
 								</div>
 							</section>
