@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>PL/SQL - iJDBC by HowToOracle_ES</title>
+		<title>About us - iJDBC by HowToOracle_ES</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -20,7 +20,7 @@
 			<div id="page-wrapper">
 
 				<!-- Header -->
-					<header id="header">
+					<header id="header" class="alt">
 						<h1><a href="index.html">Instrumented JDBC</a></h1>
 						<nav>
 							<a href="#menu">Menu</a>
@@ -42,57 +42,55 @@
 						</div>
 					</nav>
 
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<div class="logo"><span class="icon fa-diamond"></span></div>
+							<h2>About us</h2>
+							<p>A DBA and a software engineer working together</p>
+							<a href="#one" class="special">@moikmeg</a>
+							<a href="#two" class="special">@mdelapenya</a>
+						</div>
+					</section>
+
 				<!-- Wrapper -->
 					<section id="wrapper">
-						<header>
-							<div class="inner">
-								<h2>PL/SQL</h2>
-								<p>Phasellus non pulvinar erat. Fusce tincidunt nisl eget ipsum.</p>
-							</div>
-						</header>
 
-						<!-- Content -->
-							<div class="wrapper">
+						<!-- One -->
+							<section id="one" class="wrapper spotlight style1">
 								<div class="inner">
-									<h3 class="major">Instrumenting PL/SQL</h3>
-									<p>This is how a PL/SQL application must instrument the connection whenever is necessary.</p>
-									<pre><code>BEGIN
-dbms_session.set_identifier(client_id=>'moises.espinosa.es');
-dbms_application_info.set_client_info(client_info=>'Linux x86_64');
-dbms_application_info.set_module(module_name=>'script.sql',
-action_name=>'test session intstumentation');
-END;
-/</code></pre>
-
-									<h3 class="major">Reading the instrumentation</h3>
-									<p>If we want to retrieve instrumentation data, we can use following sentences:</p>
-									<pre><code>SELECT sys_context('userenv','client_identifier') AS client_identifier,
- sys_context('userenv','client_info') AS client_info,
- sys_context('userenv','module') AS module_name,
- sys_context('userenv','action') AS action_name
- FROM dual;</code></pre>
-									<pre><code>SELECT client_identifier, client_info, module AS module_name, action AS action_name
- FROM v$session
- WHERE sid = sys_context('userenv','sid');
- FROM dual;</code></pre>
-
+									<a href="#" class="image"><img src="images/moikmeg.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Moisés Espinosa</h2>
+										<p>Moisés is an experimented DBA working for <code>INDRA</code> in Madrid Office since 2010. He is a Apple products lover.</p>
+										<ul class="icons">
+											<li><a href="https://twitter.com/howtooracle_es" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+											<li><a href="http://www.howtooracle.es" class="icon fa-home"><span class="label">HowToOracle_ES</span></a></li>
+											<li><a href="https://twitter.com/moikmeg" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+											<li><a href="https://instagram.com/moikmeg" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+											<li><a href="https://es.linkedin.com/in/moikmeg" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+										</ul>
+									</div>
 								</div>
-							</div>
+							</section>
 
-						<section id="four" class="wrapper alt style">
-							<div class="inner">
-								<h2 class="major">Wanna check thow to do it with iJDBC?</h2>
-								<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
-								<section class="features">
-									<article>
-										<a href="jdbc.html" class="image"><img src="images/high-level.jpg" alt="Airplane jet engine" title="Airplane jet engine" /></a>
-										<h3 class="major">iJDBC</h3>
-										<p>Using iJDBC is super easy ans straight forward. Just add the dependencies and instrument!</p>
-										<a href="jdbc.html" class="special">Learn more</a>
-									</article>
-								</section>
-							</div>
-						</section>
+						<!-- Two -->
+							<section id="two" class="wrapper alt spotlight style2">
+								<div class="inner">
+									<a href="#" class="image"><img src="images/mdelapenya.png" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Manuel de la Peña</h2>
+										<p>Manu works for <code>Liferay</code> since 2011, and is passionated about Software, Agile methodologies, Open Source and Local Communities. He organizes <em>Software Craftsmanship CLM</em> in his home town, Toledo.</p>
+										<ul class="icons">
+											<li><a href="https://twitter.com/mdelapenya" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+											<li><a href="https://github.com/mdelapenya" class="icon fa-github"><span class="label">Github</span></a></li>
+											<li><a href="https://instagram.com/mdelapenya" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+											<li><a href="https://es.linkedin.com/in/mdelapenya" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
 					</section>
 
 				<!-- Footer -->
