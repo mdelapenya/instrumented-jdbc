@@ -76,7 +76,7 @@ compile group: 'com.ijdbc', name: 'oracle', version: '1.0-SNAPSHOT'
 									<h4 class="major">Obtaining a JDBC connection</h4>
 									<p>Depending on your application, you get an Oracle connection creating it each time:</p>
 									<pre><code>Connection connection = DriverManager.getConnection(
-	"jdbc:oracle:thin:@localhost:1521:db","username","password");</code></pre>									
+	"jdbc:oracle:thin:@localhost:1521:db","username","password");</code></pre>
 									<p>Or using a connection pool:</p>
 									<pre><code>Context ctx = new InitialContext(ht);
 OracleDataSource ods = new OracleDataSource();
@@ -107,7 +107,7 @@ metrics[OracleConnection.END_TO_END_ACTION_INDEX] = “test session instrumentat
 						<section id="four" class="wrapper alt style1">
 							<div class="inner">
 								<h2 class="major">Wanna check how to do the same with PL/SQL?</h2>
-								<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
+								<p>Please read following section if you want to know how to instrument your application following a <code>low-level</code> approach with <code>PL/SQL</code>.</p>
 								<section class="features">
 									<article>
 										<a href="pl-sql.html" class="image"><img src="images/low-level.jpg" alt="Old stairway at Glasgow Central station" title="Old stairway at Glasgow Central station" /></a>
