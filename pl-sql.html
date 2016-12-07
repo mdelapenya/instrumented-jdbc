@@ -73,8 +73,7 @@ END;
  FROM dual;</code></pre>
 									<pre><code>SELECT client_identifier, client_info, module AS module_name, action AS action_name
  FROM v$session
- WHERE sid = sys_context('userenv','sid');
- FROM dual;</code></pre>
+ WHERE sid = sys_context('userenv','sid');</code></pre>
 
 								</div>
 							</div>
