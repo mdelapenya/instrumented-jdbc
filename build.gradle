@@ -45,6 +45,10 @@ project(':oracle') {
 	}
 
 	task downloadOjdbc6Driver(type: Download) {
+		def vendors = new File(project.projectDir, "vendors")
+
+		vendors.mkdirs()
+
 		src 'http://www.java2s.com/Code/JarDownload/ojdbc6/ojdbc6-11.jar.zip'
 		dest file('vendors')
 	}
