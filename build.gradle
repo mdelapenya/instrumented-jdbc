@@ -16,6 +16,12 @@ subprojects {
 		testCompile group: 'junit', name: 'junit', version: '4.11'
 	}
 
+	test {
+		testLogging {
+			events "passed", "skipped", "failed"
+		}
+	}
+
 }
 
 project(':oracle') {
