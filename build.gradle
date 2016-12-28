@@ -13,8 +13,6 @@ subprojects {
 	}
 
 	dependencies {
-		compile files("vendors/ojdbc6.jar")
-
 		testCompile group: 'junit', name: 'junit', version: '4.11'
 	}
 
@@ -22,6 +20,7 @@ subprojects {
 
 project(':oracle') {
 	dependencies {
+		compile files("vendors/ojdbc6.jar")
 		compile group: 'com.ijdbc', name: 'common', version: '1.0-SNAPSHOT'
 
 		testCompile group: 'com.tngtech.jgiven', name: 'jgiven-html5-report', version: '0.12.1'
