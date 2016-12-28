@@ -45,12 +45,8 @@ project(':oracle') {
 	}
 
 	task downloadOjdbc6Driver(type: Download) {
-		def zipFile = new File('vendors/ojdbc6-11.jar.zip')
-
-		if (!zipFile.exists()) {
-			src 'http://www.java2s.com/Code/JarDownload/ojdbc6/ojdbc6-11.jar.zip'
-			dest file('vendors')
-		}
+		src 'http://www.java2s.com/Code/JarDownload/ojdbc6/ojdbc6-11.jar.zip'
+		dest file('vendors')
 	}
 
 	task unzipOjdbc6Driver(type: Copy) {
