@@ -1,0 +1,31 @@
+subprojects {
+	group 'com.ijdbc'
+	version '1.0-SNAPSHOT'
+
+	apply plugin: 'java'
+	apply plugin: 'maven'
+
+	sourceCompatibility = 1.8
+
+	repositories {
+		mavenCentral()
+		mavenLocal()
+	}
+
+	dependencies {
+		compile files("vendors/ojdbc6.jar")
+
+		testCompile group: 'junit', name: 'junit', version: '4.11'
+	}
+
+}
+
+project(':oracle') {
+	dependencies {
+		compile group: 'com.ijdbc', name: 'common', version: '1.0-SNAPSHOT'
+
+		testCompile group: 'com.tngtech.jgiven', name: 'jgiven-html5-report', version: '0.12.1'
+		testCompile group: 'com.tngtech.jgiven', name: 'jgiven-junit', version: '0.12.1'
+		testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+	}
+}
