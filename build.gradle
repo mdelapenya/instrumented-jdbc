@@ -1,3 +1,9 @@
+plugins {
+	id 'de.undercouch.download' version '3.1.2'
+}
+
+import de.undercouch.gradle.tasks.download.Download
+
 subprojects {
 	group 'com.ijdbc'
 	version '1.0-SNAPSHOT'
@@ -30,11 +36,32 @@ subprojects {
 
 project(':oracle') {
 	dependencies {
-		compile files("vendors/ojdbc6.jar")
+		compile files("vendors/ojdbc6-11.jar")
 		compile group: 'com.ijdbc', name: 'common', version: '1.0-SNAPSHOT'
 
 		testCompile group: 'com.tngtech.jgiven', name: 'jgiven-html5-report', version: '0.12.1'
 		testCompile group: 'com.tngtech.jgiven', name: 'jgiven-junit', version: '0.12.1'
 		testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
 	}
+
+	task downloadOjdbc6Driver(type: Download) {
+		def zipFile = new File('vendors/ojdbc6-11.jar.zip')
+
+		if (!zipFile.exists()) {
+			src 'http://www.java2s.com/Code/JarDownload/ojdbc6/ojdbc6-11.jar.zip'
+			dest file('vendors')
+		}
+	}
+
+	task unzipOjdbc6Driver(type: Copy) {
+		def zipFile = file('vendors/ojdbc6-11.jar.zip')
+		def outputDir = file('vendors')
+
+		from zipTree(zipFile)
+		into outputDir
+	}
+
+	unzipOjdbc6Driver.dependsOn downloadOjdbc6Driver
+	compileJava.dependsOn unzipOjdbc6Driver
+
 }
