@@ -37,7 +37,7 @@ subprojects {
 project(':oracle') {
 	dependencies {
 		compile files("vendors/ojdbc6-11.jar")
-		compile group: 'com.ijdbc', name: 'common', version: '1.0-SNAPSHOT'
+		compile project(':common')
 
 		testCompile group: 'com.tngtech.jgiven', name: 'jgiven-html5-report', version: '0.12.1'
 		testCompile group: 'com.tngtech.jgiven', name: 'jgiven-junit', version: '0.12.1'
