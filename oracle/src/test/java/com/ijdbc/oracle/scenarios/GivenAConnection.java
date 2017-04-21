@@ -1,6 +1,5 @@
 package com.ijdbc.oracle.scenarios;
 
-import com.ijdbc.common.JDBCInstrumentation;
 import com.ijdbc.oracle.OracleInstrumentationUtil;
 
 import com.tngtech.jgiven.Stage;
@@ -24,12 +23,10 @@ public class GivenAConnection extends Stage<GivenAConnection> {
 	public GivenAConnection theConnection()
 		throws SQLException {
 
-		JDBCInstrumentation jdbcInstrumentation = new JDBCInstrumentation(
-			"actionName", "clientInfo", "moduleName");
-
 		connection = Mockito.mock(OracleConnection.class);
 
-		OracleInstrumentationUtil.instrument(connection, jdbcInstrumentation);
+		OracleInstrumentationUtil.instrument(
+			connection, "actionName", "clientInfo", "moduleName");
 
 		return self();
 	}
