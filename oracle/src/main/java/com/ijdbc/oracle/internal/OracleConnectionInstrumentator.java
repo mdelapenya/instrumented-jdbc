@@ -1,4 +1,4 @@
-package com.ijdbc.oracle;
+package com.ijdbc.oracle.internal;
 
 import com.ijdbc.common.Instrumentator;
 import com.ijdbc.common.JDBCInstrumentation;

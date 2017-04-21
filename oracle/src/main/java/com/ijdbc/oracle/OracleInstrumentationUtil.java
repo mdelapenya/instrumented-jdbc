@@ -2,6 +2,7 @@ package com.ijdbc.oracle;
 
 import com.ijdbc.common.Instrumentator;
 import com.ijdbc.common.JDBCInstrumentation;
+import com.ijdbc.oracle.internal.OracleConnectionInstrumentator;
 
 import java.sql.Connection;
 import java.sql.SQLException;
